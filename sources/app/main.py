@@ -3,7 +3,7 @@ import requests
 from flask import jsonify
 
 app = Flask(__name__)
-@app.route("/<userid>", methods=['POST'])
+@app.route("/<userid>", methods=['GET'])
 def default(userid):
     # Assuming that this service calls the database and retrieves the sources that this user is following
     response = {"userid": userid,

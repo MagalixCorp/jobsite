@@ -6,25 +6,25 @@ spec:
   selector: 
     matchLabels:
       app: feeds
-    template:
-      metadata:
-        labels:
-          app: feeds
-      spec:
-        containers:
-        - name: feeds
-          image: magalixcorp/feeds
-          ports:
-          - containerPort: 8082
-          env:
-          - name: jobzilla
-            value: jobzilla-svc
-          - name: wuzzuf
-            value: wuzzuf-svc
-          - name: linkedin
-            value: linkedin-svc
+  template:
+    metadata:
+      labels:
+        app: feeds
+    spec:
+      containers:
+      - name: feeds
+        image: magalixcorp/feeds
+        ports:
+        - containerPort: 8082
+        env:
+        - name: jobzilla
+          value: http://jobzilla-svc
+        - name: wuzzuf
+          value: http://wuzzuf-svc
+        - name: linkedin
+          value: http://linkedin-svc
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Service
 metadata:
   name: feeds-svc

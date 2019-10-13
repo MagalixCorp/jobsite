@@ -9,7 +9,7 @@ app = Flask(__name__)
 def default(userid):
     sources_url = os.getenv("sources_url", "http://localhost:8081/")
     feeds_url = os.getenv("feeds_url", "http://localhost:8082/")
-    sources_resp = requests.post(sources_url+userid, data={"userid": userid})
+    sources_resp = requests.get(sources_url+userid)
     sources = json.loads(sources_resp.text)['sources']
     result = []
     for source in sources:

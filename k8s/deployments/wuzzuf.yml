@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wuzzuf
+spec:
+  selector: 
+    matchLabels:
+      app: wuzzuf
+    template:
+      metadata:
+        labels:
+          app: wuzzuf
+      spec:
+        containers:
+        - name: wuzzuf
+          image: magalixcorp/wuzzuf
+          ports:
+          - containerPort: 9092
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: wuzzuf-svc
+spec:
+  selector:
+    app: wuzzuf
+  ports:
+  - name: http
+    port: 80
+    targetPort: 9092

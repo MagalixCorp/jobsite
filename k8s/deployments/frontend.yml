@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector: 
+    matchLabels:
+      app: frontend
+    template:
+      metadata:
+        labels:
+          app: frontend
+      spec:
+        containers:
+        - name: frontend
+          image: magalixcorp/frontend
+          ports:
+          - containerPort: 80
+          env:
+          - name: sources
+            value: sources-svc
+          - name: feeds
+            value: sources-svc
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  selector:
+    app: frontend
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 32000

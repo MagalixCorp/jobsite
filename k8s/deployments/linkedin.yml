@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linkedin
+spec:
+  selector: 
+    matchLabels:
+      app: linkedin
+    template:
+      metadata:
+        labels:
+          app: linkedin
+      spec:
+        containers:
+        - name: linkedin
+          image: magalixcorp/linkedin
+          ports:
+          - containerPort: 9093
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: linkedin-svc
+spec:
+  selector:
+    app: linkedin
+  ports:
+  - name: http
+    port: 80
+    targetPort: 9093

@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/<userid>", methods=['GET'])
 def default(userid):
     sources_url = os.getenv("sources_url", "http://localhost:8081/")
-    feeds_url = os.getenv("sources_url", "http://localhost:8082/")
+    feeds_url = os.getenv("feeds_url", "http://localhost:8082/")
     sources_resp = requests.post(sources_url+userid, data={"userid": userid})
     sources = json.loads(sources_resp.text)['sources']
     result = []
@@ -16,8 +16,6 @@ def default(userid):
         feed_resp = requests.get(feeds_url+source['id'])
         result.append(feed_resp.json())
     return jsonify(result)
-    # feed_resp = requests.get(feeds_url+sources[0]['id'])
-    # return feed_resp.json()
 
 
 if __name__ == "__main__":

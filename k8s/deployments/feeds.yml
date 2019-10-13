@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feeds
+spec:
+  selector: 
+    matchLabels:
+      app: feeds
+    template:
+      metadata:
+        labels:
+          app: feeds
+      spec:
+        containers:
+        - name: feeds
+          image: magalixcorp/feeds
+          ports:
+          - containerPort: 8082
+          env:
+          - name: jobzilla
+            value: jobzilla-svc
+          - name: wuzzuf
+            value: wuzzuf-svc
+          - name: linkedin
+            value: linkedin-svc
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: feeds-svc
+spec:
+  selector:
+    app: feeds
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8082

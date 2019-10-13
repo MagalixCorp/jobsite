@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: manager
 spec:
   selector: 
     matchLabels:
-      app: frontend
+      app: manager
   template:
     metadata:
       labels:
-        app: frontend
+        app: manager
     spec:
       containers:
-      - name: frontend
-        image: magalixcorp/frontend
+      - name: manager
+        image: magalixcorp/manager
         ports:
         - containerPort: 80
         env:
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-svc
+  name: manager-svc
 spec:
   selector:
-    app: frontend
+    app: manager
   type: NodePort
   ports:
   - name: http

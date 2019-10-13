@@ -22,6 +22,7 @@ python3 app/main.py
 cd jobzilla
 python3 app/main.py
 ```
+#### The client services
 ##### Feeds service
 This is the service responsible for getting the job feed from each site.
 ```bash
@@ -60,6 +61,6 @@ kubectl apply -f feeds.yml
 kubectl apply -f sources.yml
 kubectl apply -f manager.yml
 ```
-### Usage
-If you are deploying it to your local machine (no Kubernetes), you can use any HTTP client to request http://localhost
-If you are using Kubernetes on one of the cloud providers, you can issue the request to http://node_ip:32001 Just make sure that port 32001 is open on the firewall
+## Usage
+If you are deploying it to your local machine (no Kubernetes), you can use any HTTP client to request [http://localhost](http://localhost)
+If you are using Kubernetes on one of the cloud providers, you can issue the request to [http://node_ip:32001](http://node_ip:32001) Just make sure that port 32001 is open on the firewall
